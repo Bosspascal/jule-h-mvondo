@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jule H Mvondo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0; }
+    header { background:#111; color:#fff; padding:8px; text-align:center; position:relative; }
+    nav { margin-top:4px; display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; }
+    nav a { color:#fff; text-decoration:none; font-weight:500; font-size:12px; }
+    section { max-width:800px; margin:30px auto 0; background:#fff; padding:30px; }
+    input, textarea { width:100%; padding:10px; margin:8px 0 20px; border:1px solid #ccc; }
+    button { padding:6px 12px; background:#111; color:#fff; border:none; cursor:pointer; font-size:12px; }
+    footer { text-align:center; padding:20px; color:#666; }
+    .slide { min-width:100%; box-sizing:border-box; border:1px solid #ddd; padding:20px; text-align:center; }
+    img { display:block; width:100%; height:auto; }
+  
+
+    /* Print-friendly styles */
+    @media print {
+      header, nav, #langSwitcher, a[href*="wa.me"], button { display: none !important; }
+      body { background: #fff; }
+      section { max-width: 100%; margin: 0 0 20px 0; padding: 20px; box-shadow: none; }
+      img { max-height: 10cm; object-fit: cover; }
+      h1, h2, h3 { color: #000; }
+      footer { position: fixed; bottom: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="home">
+  <h1 style="margin:0;font-size:18px;">Jule H Mvondo</h1>
+  <p id="tagline"></p>
+  <nav>
+    <a href="#home" id="navHome"></a>
+    <a href="#about" id="navAbout"></a>
+    <a href="#contact" id="navContact"></a>
+  </nav>
+  <div id="langSwitcher" style="position:absolute;top:8px;right:8px;">
+    <button type="button" onclick="toggleLangMenu()" id="langBtn">EN ▼</button>
+    <div id="langMenu" style="display:none;position:absolute;right:0;background:#fff;color:#000;border:1px solid #ccc;">
+      <div onclick="changeLang('en')" style="padding:6px 10px;cursor:pointer;">English</div>
+      <div onclick="changeLang('fr')" style="padding:6px 10px;cursor:pointer;">Français</div>
+      <div onclick="changeLang('cz')" style="padding:6px 10px;cursor:pointer;">Čeština</div>
+    </div>
+  </div>
+</header>
+
+<div style="max-width:800px;margin:10px auto;text-align:right;">
+  <button type="button" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<a href="https://wa.me/237600000000" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 20px;text-decoration:none;border-radius:50px;font-weight:bold;">WhatsApp</a>
+
+<section id="cars"><h2 id="carsTitle"></h2><img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80" alt="Cars"><p id="carsText"></p></section>
+<section id="spareParts">
+  <h2 id="sparePartsTitle"></h2>
+  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="Spare Parts" referrerpolicy="no-referrer">
+  <p id="sparePartsText"></p>
+</section>
+<section id="secondHand"><h2 id="secondHandTitle"></h2><img src="https://images.unsplash.com/photo-1589792923962-537704632910?auto=format&fit=crop&w=1200&q=80" alt="Second-hand Items"><p id="secondHandText"></p></section>
+<section id="transportSection">
+  <h2 id="transportSectionTitle"></h2>
+  <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Transport" referrerpolicy="no-referrer">
+  <p id="transportSectionText"></p>
+</section>
+
+<section id="about">
+  <h2 id="aboutTitle"></h2>
+  <p id="aboutText"></p>
+  <div id="slider" style="overflow:hidden;">
+    <div id="slides" style="display:flex;transition:transform 0.4s ease;">
+      <div class="slide"><h3 id="carTitle"></h3><p id="carText"></p></div>
+      <div class="slide"><h3 id="partsTitle"></h3><p id="partsText"></p></div>
+      <div class="slide"><h3 id="secondTitle"></h3><p id="secondText"></p></div>
+      <div class="slide"><h3 id="transportTitle"></h3><p id="transportText"></p></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:15px;">
+      <button type="button" onclick="prevSlide()">‹</button>
+      <button type="button" onclick="nextSlide()">›</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 id="contactTitle"></h2>
+  <form>
+    <label id="nameLabel"></label><input type="text">
+    <label id="emailLabel"></label><input type="email">
+    <label id="messageLabel"></label><textarea rows="5"></textarea>
+    <button type="button">Send</button>
+  </form>
+</section>
+
+<footer>© 2025 Jule H Mvondo</footer>
+
+<script>
+const texts={
+ en:{navHome:'Home',navAbout:'About',navContact:'Contact',tagline:'Import, Transport, and Consolidation Services',carsTitle:'Cars',carsText:'New and used vehicles available for import and export',sparePartsTitle:'Spare Parts',sparePartsText:'Second-hand spare parts for vehicles',secondHandTitle:'Second-hand Items',secondHandText:'Various used goods and items',transportSectionTitle:'Transport',transportSectionText:'Container and groupage services',aboutTitle:'About',aboutText:'We specialize in cars, second-hand spare parts, and container transport to Cameroon.',carTitle:'Cars',carText:'New and used vehicles',partsTitle:'Spare Parts',partsText:'Second-hand parts',secondTitle:'Second-hand Items',secondText:'Various used goods and items',transportTitle:'Transport',transportText:'Container and groupage services',contactTitle:'Contact',nameLabel:'Your name',emailLabel:'Your email',messageLabel:'Message'},
+ fr:{navHome:'Accueil',navAbout:'À propos',navContact:'Contact',tagline:'Importation, transport et services de groupage',carsTitle:'Voitures',carsText:'Véhicules neufs et d\'occasion disponibles à l\'import et à l\'export',sparePartsTitle:'Pièces détachées',sparePartsText:'Pièces détachées d\'occasion pour véhicules',secondHandTitle:'Articles d\'occasion',secondHandText:'Divers articles et biens d\'occasion',transportSectionTitle:'Transport',transportSectionText:'Transport par conteneur et groupage',aboutTitle:'À propos',aboutText:'Nous sommes spécialisés dans les voitures et pièces détachées d\'occasion.',carTitle:'Voitures',carText:'Véhicules neufs et d\'occasion',partsTitle:'Pièces détachées',partsText:'Pièces d\'occasion',secondTitle:'Articles d\'occasion',secondText:'Divers articles et biens d\'occasion',transportTitle:'Transport',transportText:'Transport par conteneur et groupage',contactTitle:'Contact',nameLabel:'Votre nom',emailLabel:'Votre email',messageLabel:'Message'},
+ cz:{navHome:'Domů',navAbout:'O nás',navContact:'Kontakt',tagline:'Dovoz, doprava a konsolidační služby',carsTitle:'Auta',carsText:'Nová a ojetá vozidla dostupná pro dovoz a vývoz',sparePartsTitle:'Náhradní díly',sparePartsText:'Použité náhradní díly pro vozidla',secondHandTitle:'Použité zboží',secondHandText:'Různé použité zboží a položky',transportSectionTitle:'Doprava',transportSectionText:'Kontejnerová a sdílená doprava',aboutTitle:'O nás',aboutText:'Specializujeme se na auta a použité náhradní díly.',carTitle:'Auta',carText:'Nová a ojetá vozidla',partsTitle:'Náhradní díly',partsText:'Použité díly',secondTitle:'Použité zboží',secondText:'Různé použité zboží a položky',transportTitle:'Doprava',transportText:'Kontejnerová doprava',contactTitle:'Kontakt',nameLabel:'Vaše jméno',emailLabel:'Váš email',messageLabel:'Zpráva'}
+};
+
+function safeSet(id,value){const el=document.getElementById(id);if(el){el.innerText=value;}}
+
+function setLang(lang){const t=texts[lang];for(const key in t){safeSet(key,t[key]);}}
+
+function toggleLangMenu(){const m=document.getElementById('langMenu');m.style.display=m.style.display==='block'?'none':'block';}
+function changeLang(l){setLang(l);document.getElementById('langBtn').innerText=l.toUpperCase()+' ▼';document.getElementById('langMenu').style.display='none';}
+
+let currentSlide=0;
+function updateSlide(){document.getElementById('slides').style.transform=`translateX(-${currentSlide*100}%)`;}
+function nextSlide(){currentSlide=(currentSlide+1)%4;updateSlide();}
+function prevSlide(){currentSlide=(currentSlide-1+4)%4;updateSlide();}
+
+setInterval(nextSlide,4000);
+document.addEventListener('DOMContentLoaded',()=>setLang('en'));
+</script>
+</body>
+</html>
